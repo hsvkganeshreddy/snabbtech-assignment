@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reset Password</title>
+        <style>
+        body {
+            background-image: url("frnds.png");
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        .container {
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin: 50px auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+        }
+        .links {
+            text-align: center; /* Center the links horizontally */
+            margin-bottom: 20px; /* Add margin to separate links from form */
+        }
+        .links a {
+            display: inline-block; /* Display links side by side */
+            margin: 0 10px; /* Add space between links */
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 14px;
+        }
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        } 
+        
+        .container p {
+            margin-bottom: 10px; }
+        .container label { display: block; margin-bottom: 5px; }
+        .container input[type="email"], .container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px; }
+            
+        .container input[type="checkbox"] { margin-right: 10px; }
+        .container button { 
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px; }
+            
+        .container button:hover { background-color: #45a049; }
+        .container a { display: block; text-align: center; margin-top: 10px; font-size: 14px; text-decoration: none; color: #4CAF50; }
+        .container a:hover { text-decoration: underline; }
+        .error { color: red; display: none; }
+        </style>
+    </head>
+    <body>
+            <div class="container">
+                <h1>Welcome to PANDA</h1>
+                <div class="links">
+                    <p><a href="logim.html">Join PANDA</a> 
+                       <span> or </span>
+                       <a href="signup.html">Sign in</a></p>
+                </div>
+                <form id="resetPasswordForm">
+                    <label for="password">Enter New Password</label> <input type="password" id="password" name="password" required> <p id="passwordError" class="error">This password is too weak.</p>
+                    <label for="confirmPassword">Confirm Password</label> <input type="password" id="confirmPassword" name="confirmPassword" required> <p id="confirmPasswordError" class="error">Passwords don't match.</p>
+                    <button type="submit">Sign in</button>
+                </form>
+                <p><a href="reset.html">Reset My Password</a></p>
+            </div>
+            <script>
+            const resetPasswordForm = document.getElementById("resetPasswordForm");
+            const passwordInput = document.getElementById("password");
+            const confirmPasswordInput = document.getElementById("confirmPassword");
+            const passwordError = document.getElementById("passwordError");
+            const confirmPasswordError = document.getElementById("confirmPasswordError");
+
+            resetPasswordForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                // Reset error messages
+                passwordError.textContent = "";
+                confirmPasswordError.textContent = "";
+
+                // Check password length
+                if (passwordInput.value.length < 8) {
+                    passwordError.textContent = "This password is too weak.";
+                    return;
+                }
+
+                // Check if passwords match
+                if (passwordInput.value !== confirmPasswordInput.value) {
+                    confirmPasswordError.textContent = "Passwords don't match.";
+                    return;
+                }
+
+                // If password and confirm password match and are strong enough, submit the form
+                resetPasswordForm.submit();
+            });
+            </script>
+
+    </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>PANDA Sign Up</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-image: url('frnds.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+		}
+		.container {
+			width: 300px;
+			background-color: rgba(255, 255, 255, 0.8);
+			padding: 20px;
+			border: 1px solid #ddd;
+			margin: 50px auto;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+		}
+        .links {
+            text-align: center; /* Center the links horizontally */
+            margin-bottom: 20px; /* Add margin to separate links from form */
+        }
+        .links a {
+            display: inline-block; /* Display links side by side */
+            margin: 0 10px; /* Add space between links */
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 14px;
+        }
+		.container h1 {
+			font-size: 24px;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+		.container p {
+			margin-bottom: 10px;
+		}
+		.container label {
+			display: block;
+			margin-bottom: 5px;
+		}
+		.container input[type="email"], .container input[type="password"] {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 10px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			box-sizing: border-box;
+			font-size: 16px;
+		}
+		.container input[type="checkbox"] {
+			margin-right: 10px;
+		}
+		.container button {
+			width: 100%;
+			padding: 10px;
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+		.container button:hover {
+			background-color: #45a049;
+		}
+		.container a {
+			display: block;
+			text-align: center;
+			margin-top: 10px;
+			font-size: 14px;
+			text-decoration: none;
+			color: #4CAF50;
+		}
+		.container a:hover {
+			text-decoration: underline;
+		}
+		.error {
+			color: red;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Welcome to PANDA</h1>
+        <div class="links">
+		<p><a href="#">Join PANDA</a> 
+           <span> or </span>
+           <a href="signup.html">Sign in</a></p>
+        </div>
+		<p>Create your free account. Takes less than 5 minutes...</p>
+		<form id="signupForm">
+			<label for="email">Email</label>
+			<input type="email" id="email" name="email" required>
+			<p id="emailError" class="error">This email address already exists. Sign in</p>
+			<label for="password">Password</label>
+			<input type="password" id="password" name="password" required>
+			<label for="expert">
+				<input type="checkbox" id="expert" name="expert">
+				I'm an Expert *
+			</label>
+			<label for="organization">
+				<input type="checkbox" id="organization" name="organization">
+				I'm an Organization in Africa 
+            </label>
+            <button type="submit">Create an account</button>
+        </form> 
+        <p>By clicking on "Create an account", you agree to our 
+            <div class="links">
+                <p><a href="#">Terms of Service</a>
+                <span> and </span>
+                <a href="#">Privacy Policy</a></p>
+            </div>
+        </p>
+    </div> 
+    <script> const signupForm = document.getElementById("signupForm"); const email = document.getElementById("email"); const emailError = document.getElementById("emailError");
+            signupForm.addEventListener("submit", (e) => { e.preventDefault();
+            
+            // Validate email 
+            if (email.validity.typeMismatch) 
+            { email.setCustomValidity("Please enter a valid email address."); 
+            email.reportValidity(); 
+            return; }
+            
+            // Check if email exists in database // If it does, display error message // Otherwise, submit the form // 
+            email.setCustomValidity(""); emailError.style.display = "none"; signupForm.submit(); });
+            email.addEventListener("input", () => { // Hide error message if email is valid
+                if (!email.validity.typeMismatch)
+                { emailError.style.display = "none"; 
+                email.setCustomValidity(""); 
+            } });
+    </script>
+</body>
+</html>
